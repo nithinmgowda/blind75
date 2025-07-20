@@ -13,3 +13,18 @@ public:
         return {};
     }
 };
+
+// optimal solution
+    int n=nums.size();
+        unordered_map<int, int> a;
+        for(int i=0; i<n; i++){
+            if(a.find(target-nums[i]!= a.end())){
+                return{a[target-nums[i]],i};
+            
+            }
+            a[nums[i]] =i;
+        
+        }
+        return{};
+    }
+}
