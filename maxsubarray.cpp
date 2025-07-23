@@ -13,6 +13,6 @@ class solution{
 
             }
         }
-        return golbal_max;
+        return global_max;
     }
     };
