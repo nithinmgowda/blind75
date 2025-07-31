@@ -1,8 +1,8 @@
-// why am i just add blind75 questions rather than grouping them as patterns
+// why am i just adding blind75 questions rather than grouping them as patterns
 
 // thats cause i want to understand the patterns better
 // how?? see if they are grouped i can only see one pattern but if not 
-// i can even put a big ass if else statements and solve the questions lol any way
+// i can even put a long ass if else statements and solve the questions lol any way
 
 // given two strings of different length and characters u gotta find the common subseqeunce 
 // meaning same sub string from each which is longest 
