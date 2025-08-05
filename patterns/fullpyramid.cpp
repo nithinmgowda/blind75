@@ -8,7 +8,7 @@ int main(){
     cin >> rows;
 
     for(int i =0; i< rows; i++){
-        for(k = r ; k>i k--){
+        for(k = r ; k>i; k--){
             cout<<" ";
         }
         for( j = 0; j <=i*2; j++){
