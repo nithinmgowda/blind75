@@ -56,3 +56,135 @@ class Book{
 
 // now that marks the first important parts of oops it keeps getting better lets hang on
 
+//lets create a base class for the inheritance process
+// what is inhertance it basically means one class inherits or acquires the properties of a parent class
+// a child class dervies its properties from its parent class
+
+class User{
+    protected: // this another type of access modifer whose attributes can only be accessed by derived classes
+    int userId;
+    string name;
+
+    public:
+    //constructor
+
+    user(string n , int id){
+        this-> name = n;
+        this-> userId = id;
+    }
+    virtual void displayRole(){ // virtual is a type of funtion used in poly morphism where it expects the dervied class to redefine the values;
+        cout<<"Generic user"<<endl;
+    }
+    string getname(){return name;}
+    int getid() {return userId;}
+};
+
+// now lets create a derived class which inherits the attributes from parents class;
+
+class Student :public User{
+    public :
+    Student(string n, int id) : User(n , id){}
+
+    //overriding the virtual funtion or  redefining it 
+
+    void displayRole() override {
+        cout<<"Role: Student"<<endl;
+    }
+};
+
+// another derived class that is librarian;
+
+class Librarian : public User{
+    public:
+    Librarian(string n, int id) : User(n , id){}
+
+    //overriding virtual func again 
+
+    void displayRole() override{
+        cout<<"Role : Librarian"<<endl;
+    }
+};
+
+//class library 
+// concept we use here is abstraction whose basic use case is to hide data which is not be disclosed and show important data or attributes;
+
+class Library{
+    private:
+    vector<Book> books;
+    //list of books (encapsulation)
+
+    public:
+    void addBook(Book b){
+        books.push_back(b);
+    }
+
+    void showBooks(){
+        cout << "\n -- Library books ---";
+        for( auto &book : books ){
+            book.displayBook();
+        } 
+    }
+    void issueBook(int bookId){
+        for(auto &book : books){
+            if(book.getId() == bookId){
+                if(!book.getstatus()){
+                    book.issueBook();
+
+                    cout<<"Book sucessfully issued\n";
+
+                }else{
+                    cout<<"book already issued! \n";
+                }
+                return;
+            }
+        }
+        cout<<"book not found! \n";
+    }
+    void returnBook(int bookId){
+        for(auto &book : books){
+            if(book.getId() == bookId){
+                if(book.getStatus()){
+                    book.returnBook();
+                    cout<<"book return successfully!\n";
+                }else{
+                     cout<< "book was not issued\n";
+                }
+                return;
+            }
+        }
+        cout<<"book not found!\n";
+    }
+};
+
+
+//main funtion 
+
+int main(){
+    Library lib;
+
+    lib.addBook(Book(1, "White Nights", "Dostevesky"));
+    lib.addBook(Book(2, "letters to Melina", "Franz Kafka"));
+
+    //demonstration of poly morph ism
+
+    Student s1( "nithin", 101);
+    Librarian l1("awaiz ", 502);
+
+    cout<<s1.getname()<<"->";
+    s1.displayRole();
+
+    cout<<l1.getname<<"->";
+    l1.displayRole();
+
+
+    lib.showBooks();
+
+    lib.issueBook(2);
+    lib.showBooks();
+
+    lib.returnBook(2);
+    lib.showBooks();
+
+    return 0;
+}
+
