@@ -5,6 +5,7 @@ made a simple library management system where while i code the stuff i also unde
 #include<bits/stdc++.h>
 #include<vector>
 #include<string>
+using namespace std;
 
 // so im learning oops concept hands on which would make my interview processes easier//
 
@@ -50,7 +51,7 @@ class Book{
     // now we display the book while hiding the internal representation (abstraction) 
     
     void displayBook(){
-        cout<<"ID: "<<id<< "| Title: "<<title<<"| Author: "<<author<<" | Status: "<<(isissued ? "Issued : available")<<endl;
+        cout<<"ID: "<<id<< "| Title: "<<title<<"| Author: "<<author<<" | Status: "<<(isissued ? "Issued" : "Available")<<endl;
     }
 };
 
@@ -68,7 +69,7 @@ class User{
     public:
     //constructor
 
-    user(string n , int id){
+    User(string n , int id){
         this-> name = n;
         this-> userId = id;
     }
@@ -143,7 +144,7 @@ class Library{
     void returnBook(int bookId){
         for(auto &book : books){
             if(book.getId() == bookId){
-                if(book.getStatus()){
+                if(book.getstatus()){
                     book.returnBook();
                     cout<<"book return successfully!\n";
                 }else{
@@ -170,21 +171,21 @@ int main(){
     Student s1( "nithin", 101);
     Librarian l1("awaiz ", 502);
 
-    cout<<s1.getname()<<"->";
+    cout<<s1.getname()<<"->"<<endl;;
     s1.displayRole();
 
-    cout<<l1.getname<<"->";
+    cout<<l1.getname()<<"->"<<endl;
     l1.displayRole();
 
 
     lib.showBooks();
-
+    cout<<endl;
     lib.issueBook(2);
     lib.showBooks();
-
+    cout<<endl;
     lib.returnBook(2);
     lib.showBooks();
-
+    cout<<endl;
     return 0;
 }
 
