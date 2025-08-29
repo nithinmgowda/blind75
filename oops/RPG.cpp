@@ -43,4 +43,97 @@ using namespace std;
                 int getHealth(){return health;}//gets the health 
 
             }
-    }
+    };
+
+     // weapon class 
+     // it is a separate class which is linked to players or enemies its like a composition relationship
+
+        class Weapon {
+            string weaponname;
+            int bonusattack;
+
+            public:
+            weapons(string wn , int ba ) : weaponname(wn), bonusattack(ba){}
+
+            int getBonusAttack(){ return bonusattack; }
+            string getWeaponName(){ return weaponname; }
+        };
+
+        //derived class for player which inherits from the character class
+
+        class Player : public Character {
+            int level;
+            int experience;
+            Weapon *weapon;
+
+            public:
+            player(string n):character(n, 120 , 20 , 5), level(1), experience(0), weapon(nullptr){}
+
+
+            void equipWeapon(weapon *w){
+                weapon = w;
+                cout<<name<<"equipped"<< weapon->getWeaponName()<<endl;
+
+            }
+            void attack(Character &target) override {
+                int totalAttack = attackpower +(level * 2);
+                if(weapon != nullptr) totalAttack += weapon->getBonusAttack();
+                int damage = totalAttack - target.defense;
+
+                if(damage > 0) target.takeDamage(damage);
+                cout<< name << "strikes with";
+                if(weapon != nullptr) cout << weapon ->getWeaponName();
+                else cout << "bare hands";
+                cout << "for"<< damage << "damage."<<endl;
+
+            }
+            void gainExerience(int exp){
+                experience += exp;
+                cout << name << "gained" <<exp << "XP!\n";
+                if(experince >= 100){
+                    levelUp();
+                    exeperince =0;
+                }
+            }
+            void levelUp(){
+                level++;
+                attackPower += 10;
+                health += 50;
+                defense += 10;
+                cout <<name<<"leveled up to level"<< level <<"!\n";
+
+            }
+        };
+
+
+        // derived class for enemy which inherits from the character class
+
+        class Goblin : public Character{
+            public:
+            Goblin() : Character("Goblin", 80 , 15 , 3){}
+
+            void attack(Character &target) override{
+                cout<< name << "slashes with a dagger!\n";
+                Character::attack(target);
+            }
+        };
+
+        class Dragon : public Character{
+            public:
+            Dragon() : Character("Dragon", 280 , 25 , 10){}
+
+            void attack(Character &target) override{
+                cout<< name << "Breathes fire!\n";
+                Character::attack(target);
+            }
+        };
+
+        class Mage : public Character{
+            public:
+            Mage() : Character("Mage", 120 , 20 , 5){}
+
+            void attack(Character &target) override{
+                cout<< name << "casts the infinte dark void!\n";
+                Character::attack(target);
+            }
+        }
