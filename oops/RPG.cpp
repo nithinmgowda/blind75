@@ -136,4 +136,43 @@ using namespace std;
                 cout<< name << "casts the infinte dark void!\n";
                 Character::attack(target);
             }
+        };
+
+        int main(){
+            cout << "Welcome to the badlands"<<endl;
+
+            Player player("ARCHIE");
+
+            Weapon sword("Sword", 10);
+            Weapon bow("Bow", 4);
+            Weapon shield("Shield", 2);
+            Weapon staff("staff", 12);
+
+            player.equipWeapon(&sword);
+
+
+            vector<Character*> enemies;
+
+            enemies.push_back(new Goblin());
+            enemies.push_back(new Dragon());
+            enemies.push_back(new Mage());
+
+            for(auto enemy : enemies){
+                cout << "\nA wild " << enemy->getName() << " appears!\n";
+
+                while(player.isAlive() && enemy-> isAlive()){
+                    player.attack(*enemy);
+                    if(enemy->isAlive() enemy -> attack(player));
+                }
+                if(!player.isAlive()){
+                    cout << "You have been defeated! Game Over.\n";
+                    return 0;
+                }
+                else{
+                    cout << "You defeated the " << enemy->getName() << "!\n";
+                    player.gainExerience(25);
+                }
+            }
+            cout << "Congratulations! You have defeated all enemies!\n";
+            return 0;
         }
