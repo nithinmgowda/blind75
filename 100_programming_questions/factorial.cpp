@@ -1,23 +1,17 @@
-//factorial of a number
-
 #include<bits/stdc++.h>
 using namespace std;
-
-int factorial(int num){
-
-    if( num == 0 || num == 1) return 1;
-
-    return num * factorial(num - 1);
-
-
-
-}
-int main(){
-    int num;
-    cout<<"Enter a number: ";
+int main ()
+{
+    int num, fact = 1;
     cin >> num;
-
-    factorial(num);
-
-    cout<<"Factorial of "<<num<<" is: "<<factorial(num)<<endl;
+    
+    if(num < 0)
+        cout << "Not Possible";
+    else
+    {
+        for(int i = 1; i <= num; i++)
+            fact = fact * i;
+    }
+    
+    cout << "Fact " << num << ": " << fact;
 }
