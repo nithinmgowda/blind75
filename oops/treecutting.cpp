@@ -20,17 +20,17 @@ class Weapon{
 
     public:
      // method to show the status of the weapon for all attributes basically like a status menu in games
-    showWeaponStatus(){
+    void showWeaponStatus(){
         cout<<"Name: "<<name<<endl;
         cout<<"Cutting Power: "<<cutting_power<<endl;
         cout<<"Durability: "<<durability<<endl;
         cout<<"Efficiency: "<<efficiency<<endl;
     }
     // individual methods for getting the values of private attributes
-    getname(){return name;}
-    getCuttingpower(){return cutting_power;}
-    getDurability(){return durability;}
-    getEfficiency(){return efficiency;}
+    void getname(){return name;}
+    int getCuttingpower(){return cutting_power;}
+    int getDurability(){return durability;}
+    int getEfficiency(){return efficiency;}
 
 // parameterized constructor to initalize the values of the attributes when the object is created
     Weapon(string name, int power, int durability, int efficiency){
@@ -41,7 +41,7 @@ class Weapon{
 
     }
     // setter methods for setting values and validating them
-    setDurability(int dur){
+    void setDurability(int dur){
         if(dur >= min_durability && dur <= max_durability){
             this -> durability = dur;
         }else{
@@ -49,7 +49,7 @@ class Weapon{
         }
     }
 
-    setCutting_power(int powe){
+    void setCutting_power(int powe){
         if(powe >= min_cutting_power && powe <= max_cutting_power){
             this -> cutting_power = powe;
         }else{
@@ -57,7 +57,7 @@ class Weapon{
         }
     }
 
-    setEfficiency(int eff){
+    void setEfficiency(int eff){
         if(eff >= min_efficiency && eff <= max_efficiency){
             this -> efficiency = eff;
         }else{
@@ -73,7 +73,7 @@ class Weapon{
 
     }
     // method to repair the weapon based on input amount
-    repair(amt){
+    void repair(amt){
         durability = min(max_durability, durability + amt);
         if(durability == max_durability)
             cout<<name<<" is fully restored to its original condition!"<<endl;
